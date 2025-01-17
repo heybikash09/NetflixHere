@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+::-webkit-scrollbar {
+    display: none;
+  }
+.hmm{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.slick-next {
+    background-color: red; /* Change background color */
+  
+  }
+  .spacing .slick-slide {
+    margin-right: 20px; /* Adjust the value to the amount of space you need */
+  }
+
+  .img{
+    background-image: url('kids.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .land_bg{
+    background-image:linear-gradient(to right,rgba(0,0,0,0.8),rgba(0,0,0,0.4)),url('hero.png');
+  }
+
+  
