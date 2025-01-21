@@ -5,6 +5,7 @@ import MulitiSlider from "./MulitiSlider";
 import Footer from "../Landingpage/Footer";
 
 function Home() {
+  
   return (
     <div className="hmm w-full h-screen bg-black">
       <header>
@@ -17,7 +18,7 @@ function Home() {
             <li>about</li>
             <li>contacts</li>
           </div>
-          <div className=" flex  justify-center items-center gap-3">
+          <div className=" flex  justify-center items-center gap-3 ">
             <input type="text" className=" h-9 rounded-xl" />
             <button>
               <UserRoundPen className=" ring-2" />
@@ -39,7 +40,7 @@ function Home() {
             </h2>
             <button className=" mr-3 text-red-600">View All</button>
           </div>
-          <MulitiSlider />
+          <MulitiSlider />  
         </div>
 
         {/* Special and Latest Movies */}

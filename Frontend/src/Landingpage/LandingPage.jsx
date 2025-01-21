@@ -48,6 +48,7 @@ function LandingPage() {
           </div>
         </div>
 
+
         {/* Separation  */}
 
         {/* section TV shows */}
@@ -59,11 +60,10 @@ function LandingPage() {
             <div className=" flex-1 text-center gap-2 flex items-center">
               <div className="text-center gap-2 flex-co4 items-center">
                 <h2 className=" text-4xl md:text-5xl font-extrabold">
-                  Enjoy on Your TV
+                  Love you Jhumu Darling !!!!!!! TV
                 </h2>
                 <p className=" text-lg md:text-xl px-4 leading-normal mt-5">
-                  Watch on Smart TVs,playStations,Xbox,ChromeCast,Apple
-                  Tv,Blur-ray Players and more
+                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique laboriosam illo, maxime nisi officia facere possimus ratione consectetur fuga debitis.
                 </p>
               </div>
             </div>
@@ -117,7 +117,7 @@ function LandingPage() {
             <div className="flex-1 text-center gap-2 flex items-center">
               <div className="text-center gap-2 flex-co4 items-center">
                 <h2 className=" text-4xl md:text-5xl font-extrabold">
-                  Download your shows to watch offline
+                  Tame no 1 Bayaniiiii
                 </h2>
                 <p className=" text-lg md:text-xl px-4 leading-normal mt-5">
                   Save your favourite easily and always have something to watch
