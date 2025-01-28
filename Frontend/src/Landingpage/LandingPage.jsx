@@ -2,12 +2,20 @@
 import { ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import { useState } from "react";
 function LandingPage() {
-  const navigate=useNavigate()
+  const [email, setEmail] =useState("");
+  const navigate = useNavigate();
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    console.log(email);
+    navigate('/signup?email='+email)
+  };
+  
   return (
     //First Section
     <>
-      <div className=" flex-col min-h-screen bg-black">
+      <div className="hmm  flex-col min-h-screen bg-black">
         <div className="land_bg h-screen w-full flex-col justify-center items-center">
           <nav className=" flex flex-row justify-around items-center">
             <img
@@ -15,7 +23,12 @@ function LandingPage() {
               alt=""
               className=" relative right-[10%] w-[8rem] h-[3rem] top-6  "
             />
-            <button className=" relative top-6 left-[15%] bg-red text-white text-lg h-8 bg-red-600 hover:bg-red-700 w-20 rounded-xl" onClick={()=>navigate('/signin')} >signin</button>
+            <button
+              className=" relative top-6 left-[15%] bg-red text-white text-lg h-8 bg-red-600 hover:bg-red-700 w-20 rounded-xl"
+              onClick={() => navigate("/signin")}
+            >
+              signin
+            </button>
           </nav>
           <div className="gap-4 w-[80%] sm:w-[50%] md:w-[40%]  mx-auto relative top-[20%]">
             <div className=" text-3xl sm:text-5xl font-extrabold text-white flex justify-center">
@@ -32,14 +45,19 @@ function LandingPage() {
                   Ready to watch ? Enter your email to create or restart your
                   membership.
                 </div>
-                <form className="md:flex md:justify-center md:items-center justify-center mt-4 gap-10 md:gap-2">
+                <form
+                  className="md:flex md:justify-center md:items-center justify-center mt-4 gap-10 md:gap-2"
+                  onSubmit={handleSubmitForm}
+                >
                   <input
-                    type="text"
+                    type="email"
+                    value={email}
                     className=" w-full h-14  bg-slate-500 ring-1 text-white ring-slate-500 rounded-lg bg-opacity-40"
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="   Email address"
                   />
                   <div className="w-full md:w-[30%] h-14 md:h-14 ring-1 ring-slate-500 rounded-lg text-xl hover:bg-red-700 bg-red-600 text-white flex justify-center items-center">
-                    <button type="submit">submit</button>
+                    <button type="submit">get started</button>
                     <ChevronRight className=" size-8 " />
                   </div>
                 </form>
@@ -47,7 +65,6 @@ function LandingPage() {
             </div>
           </div>
         </div>
-
 
         {/* Separation  */}
 
@@ -60,10 +77,11 @@ function LandingPage() {
             <div className=" flex-1 text-center gap-2 flex items-center">
               <div className="text-center gap-2 flex-co4 items-center">
                 <h2 className=" text-4xl md:text-5xl font-extrabold">
-                  Love you Jhumu Darling !!!!!!! TV
+                  Enjoy on your TV !!
                 </h2>
                 <p className=" text-lg md:text-xl px-4 leading-normal mt-5">
-                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique laboriosam illo, maxime nisi officia facere possimus ratione consectetur fuga debitis.
+                  Watch on Smart TVs, Playstations, Xbox Chromecast, Apple TV,
+                  Blueray Players and more
                 </p>
               </div>
             </div>
@@ -117,7 +135,7 @@ function LandingPage() {
             <div className="flex-1 text-center gap-2 flex items-center">
               <div className="text-center gap-2 flex-co4 items-center">
                 <h2 className=" text-4xl md:text-5xl font-extrabold">
-                  Tame no 1 Bayaniiiii
+                  Download your show to watch offline
                 </h2>
                 <p className=" text-lg md:text-xl px-4 leading-normal mt-5">
                   Save your favourite easily and always have something to watch
@@ -163,9 +181,8 @@ function LandingPage() {
 
         {/* Footer */}
         <div>
-          <Footer/>
+          <Footer />
         </div>
-       
       </div>
     </>
   );

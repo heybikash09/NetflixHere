@@ -3,8 +3,8 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-black text-white py-10 px-5">
-      <div className="max-w-7xl mx-auto">
+    <footer className="text-white py-10 px-5 w-full">
+      <div className="max-w-full mx-2">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 border-b border-gray-700 pb-8  leading-loose">
           {/* Left Section - Brand Info */}
@@ -50,16 +50,16 @@ function Footer() {
           </div>
 
           {/* Subscribe Newsletter */}
-          <div>
+          <div className="w-full">
             <h3 className="text-lg font-semibold">Subscribe Newsletter</h3>
-            <div className="mt-3 flex">
+            <div className="mt-3 flex w-full ">
               <input
                 type="email"
                 placeholder="Email*"
-                className="p-2 flex-grow bg-gray-800 text-white rounded-l-md outline-none"
+                className="p-2  flex-grow bg-gray-800 text-white rounded-l-md outline-none w-[60%]"
               />
-              <button className="bg-red-500 px-4 py-2 rounded-r-md text-white hover:bg-red-800">
-                Subscribe
+              <button className="  w-[40%] bg-red-500 px-4 py-2 rounded-r-md flex justify-center text-white hover:bg-red-800">
+                <span>Subscribe</span>
               </button>
             </div>
 

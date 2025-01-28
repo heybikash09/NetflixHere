@@ -3,10 +3,14 @@ import React from "react";
 import SlideMovies from "./SlideMovies";
 import MulitiSlider from "./MulitiSlider";
 import Footer from "../Landingpage/Footer";
+import { useAuthStore } from "../store/authStore";
+import Signup from "../Authentication/Signup";
+import { Navigate } from "react-router-dom";
 
 function Home() {
-  
-  return (
+  const {user,logout}=useAuthStore()
+  console.log('log from home user-->',user)
+  return (!user?<Navigate to={'/signup'} />:
     <div className="hmm w-full h-screen bg-black">
       <header>
         <div className=" w-full bg-purple-600 h-16 flex justify-evenly items-center absolute hidden">
@@ -26,6 +30,8 @@ function Home() {
           </div>
         </div>
       </header>
+
+      <button className=" text-white rounded-xl bg-red-600 p-3"  onClick={logout}>Logout</button>
       {/* content show division  */}
       <div className=" h-[90%] w-[98%] mt-10 mx-auto">
         <SlideMovies />
@@ -36,7 +42,7 @@ function Home() {
         <div className="   mb-20 w-[95%] h-[60vh] mx-auto flex flex-col justify-evenly">
           <div className=" flex justify-between py-3">
             <h2 className=" text-xl text-white font-semibold ">
-              Movies Recomended For You
+            Popular Movies
             </h2>
             <button className=" mr-3 text-red-600">View All</button>
           </div>
@@ -47,7 +53,7 @@ function Home() {
         <div className="   mb-20 w-[95%] h-[60vh] mx-auto flex flex-col justify-evenly ">
           <div className=" flex justify-between py-3">
             <h2 className=" text-xl text-white font-semibold ">
-              Movies Recomended For You
+            Special and Latest Movies
             </h2>
             <button className=" mr-3 text-red-600">View All</button>
           </div>
@@ -59,7 +65,7 @@ function Home() {
         <div className="   mb-20 w-[95%] h-[60vh] mx-auto flex flex-col justify-evenly ">
           <div className=" flex justify-between py-3">
             <h2 className=" text-xl text-white font-semibold ">
-              Movies Recomended For You
+            Movies Recomended for you
             </h2>
             <button className=" mr-3 text-red-600">View All</button>
           </div>
