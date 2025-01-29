@@ -5,7 +5,7 @@ export const getTrendingMovies = async (req, res) => {
     try {
         const data = await fetchFromTMDB('https://api.themoviedb.org/3/trending/movie/day?language=en-US')
         console.log('Data-->', data.results)
-        return res.status(200).json({ succes: true, data: data })
+        return res.status(200).json({ succes: true, content: data })
     } catch (err) {
         console.log('error--> ', err)
         return res.status(400).json({ success: false, message: 'Got a error ' })
