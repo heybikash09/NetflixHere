@@ -30,15 +30,15 @@ function SlideMovies() {
         slidesPerView={1} // Show 6 slides at a time
         spaceBetween={10} // Spacing between slides
         modules={[Navigation, Pagination]}
-        className="w-full h-[100%]"
+        className="w-full h-[100%] "
       >
         {trendingContent.map((src, index) => (
           <SwiperSlide key={index}>
-            <div className=" h-full ">
+            <div className=" h-full bg-gradient-to-r from-black via-slate-700 to-slate-400">
               <img
                 src={ORIGINAL_IMG_BASE_URL + src.backdrop_path}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full rounded-lg"
+                className="w-full h-full rounded-lg mix-blend-overlay"
               />
               <div className="  relative z-50 -top-96 py-5 flex flex-col gap-5 ml-20 text-white">
                 <h2 className=" text-4xl lg:text-7xl font-bold">{src.title}</h2>
