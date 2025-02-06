@@ -15,7 +15,7 @@ const name = ["Movies Recomended For You", "Related Movies", "Upcoming"];
 function WatchPage() {
   const location = useLocation();
   console.log("location-->", location);
-  
+
   const { user } = useAuthStore();
   console.log("user-->", user);
   const [trailer, setTrailer] = useState([]);
@@ -23,7 +23,10 @@ function WatchPage() {
   const [contentDetails, setContentDetails] = useState({});
   const [similarContent, setSimilarContent] = useState();
   const { contentType } = useContentStore();
-  const movies =contentType=='movie'?MOVIE_CATEGORY.slice(1,4):TV_CATEGORY.slice(1,4);
+  const movies =
+    contentType == "movie"
+      ? MOVIE_CATEGORY.slice(1, 4)
+      : TV_CATEGORY.slice(1, 4);
   const [id, setId] = useState();
 
   const [nav, setNav] = useState(false);
@@ -51,22 +54,20 @@ function WatchPage() {
       console.log("id-->", id);
     };
     getID();
-  }, [contentType, location,id]);
+  }, [contentType, location, id]);
 
   // For trailer
   useEffect(() => {
     const getTrailer = async () => {
       try {
-        console.log('Just started !!')
+        console.log("Just started !!");
         const res = await axios.get(`api/v1/${contentType}/${id}/trailer`);
-        if(contentType=='movie')
-        setTrailer(res.data.content);
-      else
-      setTrailer(res.data.content.results);
-        console.log(contentType,"-->trailer-->", res.data.content);
+        if (contentType == "movie") setTrailer(res.data.content);
+        else setTrailer(res.data.content.results);
+        console.log(contentType, "-->trailer-->", res.data.content);
       } catch (error) {
         if (error.message.includes("404")) setTrailer([]);
-        console.log(error.message)
+        console.log(error.message);
       }
     };
     getTrailer();
@@ -107,25 +108,28 @@ function WatchPage() {
   return (
     <>
       {nav && <NavBar />}
-      
+
       <div className="h-[100%] w-full mx-auto p-6 space-y-12 bg-slate-900 text-white">
         {/* Movie Player Section */}
-        {loading?<PulseMainVideo />:<div className="w-[95%] mx-auto h-[90vh]   rounded-xl overflow-hidden aspect-video">
-          <ReactPlayer
-            controls={true}
-            width={"100%"}
-            height={"100%"}
-            url={`https://www.youtube.com/watch?v=${
-              trailer[Math.floor(Math.random() * trailer.length)]?.key
-            }`}
-          ></ReactPlayer>
-        </div>}
-        
+        {loading ? (
+          <PulseMainVideo />
+        ) : (
+          <div className="w-[95%] mx-auto h-[90vh]   rounded-xl overflow-hidden aspect-video">
+            <ReactPlayer
+              controls={true}
+              width={"100%"}
+              height={"100%"}
+              url={`https://www.youtube.com/watch?v=${trailer[0]?.key}`}
+            ></ReactPlayer>
+          </div>
+        )}
 
         {/* Movie Details Section */}
-        <div className="p-8 rounded-2xl shadow-lg bg-white text-gray-900 ">
-          <h1 className="text-5xl font-extrabold mb-4">
-            {contentDetails.original_title}
+        <div className="p-8 text-red-300 rounded-2xl shadow-lg bg-gradient-to-br from-black to-blue-950">
+          <h1 className="text-5xl font-extrabold mb-4 ">
+            {contentType == "movie"
+              ? contentDetails.original_title
+              : contentDetails.original_name}
           </h1>
           <h1 className="text-xl font-bold mb-4 flex justify-start gap-5">
             {contentDetails.genres?.map((gen, ind) => (
@@ -138,28 +142,28 @@ function WatchPage() {
               <Share2
                 fill="red"
                 color="red"
-                className=" bg-white rounded-full p-1.5 box-border"
+                className=" bg-white rounded-full p-1.5 box-border hover:bg-gray-400"
               />{" "}
             </li>
-            <li className=" rounded-full bg-gray-500 p-1.5 box-border">
+            <li className=" rounded-full bg-gray-500 p-1.5 box-border hover:bg-gray-400">
               <Heart
                 fill="red"
                 color="red"
-                className=" bg-white rounded-full p-1.5 box-border"
+                className=" bg-white rounded-full p-1.5 box-border hover:bg-gray-400"
               />{" "}
             </li>
             <li className=" rounded-full bg-gray-500 p-1.5 box-border">
               <Plus
                 fill="red"
                 color="red"
-                className=" bg-white rounded-full p-1.5 box-border"
+                className=" bg-white rounded-full p-1.5 box-border hover:bg-gray-400"
               />{" "}
             </li>
             <li className=" rounded-full bg-gray-500 p-1.5 box-border">
               <Download
                 fill="red"
                 color="red"
-                className=" bg-white rounded-full p-1.5 box-border"
+                className=" bg-white rounded-full p-1.5 box-border hover:bg-gray-400"
               />{" "}
             </li>
           </div>
@@ -168,8 +172,8 @@ function WatchPage() {
           </p>
 
           {/* Description  */}
-          <div className=" my-10 w-full h-[100%] bg-yellow-400 rounded-xl overflow-hidden">
-            <div className=" flex gap-8 text-2xl text-white bg-gray-700 p-4 justify-center list-none font-semibold">
+          <div className=" my-10 w-full h-[100%]  rounded-xl overflow-hidden">
+            <div className=" flex gap-8 text-xl text-white bg-gray-700 p-4 justify-center list-none font-semibold">
               <li className=" bg-gray-700">Descriptino</li>
               <li>Rate and Review</li>
               <li>Source</li>
@@ -179,7 +183,7 @@ function WatchPage() {
             </div>
           </div>
 
-          <p className="text-lg text-gray-700 leading-relaxed">
+          <p className="text-lg text-red-300 leading-relaxed">
             A skilled thief is given a chance at redemption if he can
             successfully plant an idea inside a target's subconscious.
           </p>

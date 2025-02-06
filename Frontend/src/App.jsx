@@ -41,7 +41,7 @@ function App() {
           path="/watch"
           element={<WatchPage />}
         />
-        <Route path="/search"  element={<SearchPage/>} />
+        <Route path="/search"  element={<SearchPage/>}/>
       </Routes>
       <Toaster />
     </>
