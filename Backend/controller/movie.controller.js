@@ -15,12 +15,14 @@ export const getTrendingMovies = async (req, res) => {
 
 export const getMovieTrailer = async (req, res) => {
     const { id } = req.params
+  
     try {
+        console.log('trailer Triger !!!')
         const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`)
         console.log('Data-->', data.results)
-        return res.status(200).json({ succes: true, data: data })
+        return res.status(200).json({ succes: true, content: data.results })
     } catch (err) {
-        console.log('error--> ', err)
+        console.log('error--> ', err.message)
         return res.status(400).json({ success: false, message: 'Got a error ' })
     }
 }
@@ -30,7 +32,7 @@ export const getMovieDetails = async (req, res) => {
     try {
         const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}?language=en-US`)
         console.log('Data-->', data.results)
-        return res.status(200).json({ succes: true, data: data })
+        return res.status(200).json({ succes: true, content: data })
     } catch (err) {
         console.log('error--> ', err)
         return res.status(400).json({ success: false, message: 'Got a error ' })
@@ -43,7 +45,7 @@ export const getSimilarMovies = async (req, res) => {
     try {
         const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`)
         console.log('Data-->', data.results)
-        return res.status(200).json({ succes: true, data: data })
+        return res.status(200).json({ succes: true, content: data })
     } catch (err) {
         console.log('error--> ', err)
         return res.status(400).json({ success: false, message: 'Got a error ' })
@@ -52,10 +54,12 @@ export const getSimilarMovies = async (req, res) => {
 
 export const getMoviesByCategories = async (req, res) => {
     const { category } = req.params
+    
     try {
         const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`)
-        console.log('Data-->', data.results)
-        return res.status(200).json({ succes: true, data: data })
+        console.log('cate triger')
+      //  console.log('Data-->', data.results)
+        return res.status(200).json({ succes: true, content: data })
     } catch (err) {
         console.log('error--> ', err)
         return res.status(400).json({ success: false, message: 'Got a error ' })

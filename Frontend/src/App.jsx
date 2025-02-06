@@ -7,38 +7,41 @@ import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authStore";
 import { useEffect } from "react";
 import { Loader } from "lucide-react";
+import WatchPage from "./HomePage/WatchPage";
+import SearchPage from "./Search/searchPage";
 function App() {
-const {user,isChekingAuth,authCheck}=useAuthStore()
-console.log('authenticated user -->',user)
-useEffect(()=>{
-  authCheck()
-},[authCheck])
-if (isChekingAuth) {
-  console.log('Heyyyy !!')
-  return (
-    <div className='h-screen'>
-      <div className='flex justify-center items-center bg-black h-full'>
-        <Loader className='animate-spin text-red-600 size-10' />
+  const { user, isChekingAuth, authCheck } = useAuthStore();
+  console.log("authenticated user -->", user);
+  useEffect(() => {
+    authCheck();
+  }, [authCheck]);
+  if (isChekingAuth) {
+    console.log("Heyyyy !!");
+    return (
+      <div className="h-screen">
+        <div className="flex justify-center items-center bg-black h-full">
+          <Loader className="animate-spin text-red-600 size-10" />
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
   return (
     <>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="signup"
-          element={ !user?<Signup />:<Navigate  to={'/home'} />}
+          element={!user ? <Signup /> : <Navigate to={"/"} />}
         />
         <Route
           path="signin"
-          element={!user?<Login />:<Navigate  to={'/home'} />}
+          element={!user ? <Login /> : <Navigate to={"/"} />}
         />
         <Route
-          path="home"
-          element={ <Home />}
+          path="/watch"
+          element={<WatchPage />}
         />
+        <Route path="/search"  element={<SearchPage/>} />
       </Routes>
       <Toaster />
     </>

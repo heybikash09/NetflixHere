@@ -3,14 +3,12 @@ import { useContentStore } from '../store/content'
 import axios from 'axios'
 
 function useGetTrendingContent() {
-    const [trendingContent,setTrendingContent]=useState([])
-    //i am spending 3.4 hrs here bcz i wrote null instead of [] !!!!
-    const {contentType,setContentType}=useContentStore()
-    // setContentType('tv')
-    console.log('first Upper')
     
+    const [trendingContent,setTrendingContent]=useState([])
+    //i am spending 3.4 hrs here bcz i wrote null instead of [] at the time of debug !!!!
+    const {contentType}=useContentStore()
+    console.log('trending from root')
     useEffect(()=>{
-        console.log('second Under')
         const getTrendingContent=async ()=>{
             const res=await axios.get(`api/v1/${contentType}/trending`)
             console.log('res-->',res.data)
@@ -18,7 +16,6 @@ function useGetTrendingContent() {
         }
         getTrendingContent()
     },[contentType])
-    console.log('first Upper-->',contentType)
   return {trendingContent}
 }
 

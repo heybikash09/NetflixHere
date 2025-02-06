@@ -21,7 +21,7 @@ export const searchPerson = async (req, res) => {
             }
         })
 
-        return res.status(200).json({ success: true, data: response.results })
+        return res.status(200).json({ success: true, content: response.results })
     } catch (err) {
         console.log('error-->', err.message)
         return res.status(500).json({ success: false, message: 'Internal Server Error !!!!' })
@@ -48,7 +48,7 @@ export const searchTV = async (req, res) => {
                 }
             }
         })
-        return res.status(200).json({ success: true, data: response.results })
+        return res.status(200).json({ success: true, content: response.results })
     } catch (err) {
         console.log('error-->', err.message)
         return res.status(500).json({ success: false, message: 'Internal Server Error !!!!' })
@@ -77,7 +77,7 @@ export const searchMovie = async (req, res) => {
                 }
             }
         })
-        return res.status(200).json({ success: true, data: response.results })
+        return res.status(200).json({ success: true, content: response.results })
     } catch (err) {
         console.log('error-->', err.message)
         return res.status(500).json({ success: false, message: 'Internal Server Error !!!!' })
@@ -86,7 +86,7 @@ export const searchMovie = async (req, res) => {
 
 export const getSearchHistory = async (req, res) => {
     try {
-        return res.status(200).json({ success: true, data: req.user.searchHistory })
+        return res.status(200).json({ success: true, content: req.user.searchHistory })
     } catch (err) {
         console.log('error-->', err.message)
         return res.status(500).json({ success: false, message: 'Internal Server Error !!'})
