@@ -14,7 +14,7 @@ const __dirname=path.resolve()
 const app = express()
 app.use(cors())
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow frontend URL
+    origin: 'https://netflixhere.onrender.com', // Allow frontend URL
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
 }));
