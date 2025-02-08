@@ -9,7 +9,7 @@ import { ORIGINAL_IMG_BASE_URL } from "../utils/constants";
 import { useContentStore } from "../store/content";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
-import PulseMainVideo from "./pulseMainVideo";
+import PulseMainVideo from "./PulseBiping";
 
 function SlideMovies() {
   const [loading, setLoading] = useState(true);

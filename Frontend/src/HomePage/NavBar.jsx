@@ -1,16 +1,16 @@
 import { AlignJustify, Search, UserRoundPen } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { useContentStore } from "../store/content";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function NavBar() {
-  const { setContentType, contentType } = useContentStore();
-  console.log("content type-->", contentType);
+function NavBar({setIsOpen}) {
+  const { setContentType, contentType} = useContentStore();
+  const navigate=useNavigate()
   return (
     <>
       <div className=" w-full bg-black opacity-90 gap-4 h-20 flex justify-between items-center fixed z-30 ">
         <img
-          src=".\netflix-logo.png"
+          src="./streamit.bmp"
           className=" w-[8rem] md:w-[10rem] md:h-[3] h-[2rem] lg:ml-28"
           alt=""
         />
@@ -19,6 +19,7 @@ function NavBar() {
           <li
             onClick={() => {
               setContentType("movie");
+              navigate('/')
             }}
             className=" selection:bg-red-800"
           >
@@ -27,6 +28,7 @@ function NavBar() {
           <li
             onClick={() => {
               setContentType("tv");
+              navigate('/')
             }}
           >
             Tv_shows
@@ -40,7 +42,7 @@ function NavBar() {
             </button>
           </Link>
           <button>
-            <UserRoundPen className=" ring-2 rounded-full w-9 h-9 p-2 text-red-600 hidden sm:flex" />
+            <UserRoundPen onClick={()=>setIsOpen(true)} className=" ring-2 rounded-full w-9 h-9 p-2 text-red-600 hidden sm:flex" />
             <AlignJustify className="  rounded-ld w-9 h-9 p-1 text-red-600 sm:hidden" />
             <div className="hidden text-white w-64 h-64 absolute right-16 top-1 bg-gradient-to-br from-black to-blue-950 rounded-bl-2xl">
               <div className=" flex justify-start gap-6 items-center">

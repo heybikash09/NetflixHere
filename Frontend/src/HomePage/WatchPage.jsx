@@ -4,12 +4,12 @@ import { Download, Heart, Plus, Share2, Tv } from "lucide-react";
 import MulitiSlider from "./MulitiSlider";
 import { MOVIE_CATEGORY, TV_CATEGORY } from "../utils/constants";
 import Footer from "../Landingpage/Footer";
-import PulseMainVideo from "./pulseMainVideo";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useContentStore } from "../store/content";
 import { useAuthStore } from "../store/authStore";
 import NavBar from "./NavBar";
+import PulseBiping from "./PulseBiping";
 
 const name = ["Movies Recomended For You", "Related Movies", "Upcoming"];
 function WatchPage() {
@@ -112,7 +112,7 @@ function WatchPage() {
       <div className="h-[100%] w-full mx-auto p-6 space-y-12 bg-slate-900 text-white">
         {/* Movie Player Section */}
         {loading ? (
-          <PulseMainVideo />
+          <PulseBiping/>
         ) : (
           <div className="w-[95%] mx-auto h-[90vh]   rounded-xl overflow-hidden aspect-video">
             <ReactPlayer

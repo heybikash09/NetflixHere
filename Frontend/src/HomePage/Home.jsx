@@ -8,13 +8,13 @@ import { MOVIE_CATEGORY, TV_CATEGORY } from "../utils/constants";
 import axios from "axios";
 import LandingPage from "../Landingpage/LandingPage";
 import NavBar from "./NavBar";
+import ProfileDetails from "./ProfileSidePlanel";
 
-function Home(){
-const [nav,setNav]=useState(false)
+function Home() {
+  const [nav, setNav] = useState(false);
   const handleScroll = () => {
-    if(window.scrollY>0)
-      setNav(true)
-    else setNav(false)
+    if (window.scrollY > 0) setNav(true);
+    else setNav(false);
   };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -23,40 +23,34 @@ const [nav,setNav]=useState(false)
     };
   }, []);
 
+  const { user } = useAuthStore();
+  const { contentType } = useContentStore();
+  const [isPanelOpen, setPanelOpen] = useState(false);
+  const [isDarkMode, setIsDarkMOde] = useState(false);
+  console.log('panelll--->',isPanelOpen)
 
-  const { user, logout } = useAuthStore();
-  // useContentStore
-  // const {setContentType}=useContentStore()
-  // setContentType('movie')
-  const {contentType}=useContentStore()
-  const category = contentType=='movie'?MOVIE_CATEGORY:TV_CATEGORY;
-  const name =contentType=='movie'?["Now Playing", "Top Rated ", "Popular", "Upcoming"]:["Airing On Today", "Pupular", "Top Rated", "On The Air"];
+  const category = contentType == "movie" ? MOVIE_CATEGORY : TV_CATEGORY;
+  const name =
+    contentType == "movie"
+      ? ["Now Playing", "Top Rated ", "Popular", "Upcoming"]
+      : ["Airing On Today", "Pupular", "Top Rated", "On The Air"];
   console.log("category--->", category);
-// const [trailer,setTrailer]=useState([])
-  
- 
-  // useEffect(()=>{
-  //   const getTrailer=async ()=>{
-  //     try {
-  //       const res= await axios.get(`api/v1/${contentType}/939243/trailer`)
-  //     setTrailer(res.data.content)
-  //     console.log('trailer-->',res.data)
-  //     } catch (error) {
-  //       if(error.message.includes('404'))
-  //         setTrailer([])
-  //     }
-  //   };
-  //   getTrailer();
-  // },[contentType])
-
   console.log("log from home user-->", user); //this render every state change of user wherever it may be
   return !user ? (
-    <LandingPage/>
+    <LandingPage />
   ) : (
     <div className="hmm w-full h-[100%] bg-gradient-to-br from-black to-blue-950">
       <header className=" ">
-       {nav && <NavBar/>}
+        {nav && <NavBar setIsOpen={() => setPanelOpen(true)} />}
       </header>
+      {isPanelOpen && (
+        <ProfileDetails
+          isOpen={isPanelOpen}
+           onToggleDarkMode={() => setIsDarkMOde(!isDarkMode)}
+           isDarkMode={isDarkMode}
+           onClose={() => setPanelOpen(false)}
+        />
+      )}
 
       {/* content show division  */}
       <div className=" h-[100%] w-[98%] mt-10 mx-auto">
