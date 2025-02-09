@@ -30,7 +30,9 @@ app.use('/api/v1/auth',authRouter)
  app.use('/api/v1/movie',protectRoute, movieRouter)
  app.use('/api/v1/tv',protectRoute, tvRouter)
  app.use('/api/v1/search',protectRoute, searchRouter)
-
+app.get('/health',(req,res)=>{
+    res.send({status:'ok working'})
+})
 
 // app.use(express.static(path.join(__dirname,'/Frontend/dist')))
 // app.get('*',(req,res)=>{

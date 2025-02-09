@@ -8,7 +8,7 @@ export default defineConfig({
   server:{
     proxy:{
      '/api/v1': {
-        target: `https://localhost:${ENV_VARS.PORT}`, // Replace with your backend server
+        target: `https://localhost:2000`, // Replace with your backend server
         changeOrigin: true,
       },
     }
