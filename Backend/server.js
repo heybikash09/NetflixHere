@@ -14,7 +14,7 @@ const __dirname=path.resolve()
 const app = express()
 app.use(cors())
 app.use(cors({
-    origin: 'https://netflixhere.onrender.com', // Allow frontend URL
+    origin: '*', // Allow frontend URL
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
 }));
@@ -32,10 +32,10 @@ app.use('/api/v1/auth',authRouter)
  app.use('/api/v1/search',protectRoute, searchRouter)
 
 
-app.use(express.static(path.join(__dirname,'/Frontend/dist')))
-app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,"Frontend","dist","index.html"))
-})
+// app.use(express.static(path.join(__dirname,'/Frontend/dist')))
+// app.get('*',(req,res)=>{
+//     res.sendFile(path.resolve(__dirname,"Frontend","dist","index.html"))
+// })
 app.listen(port, () => {
     console.log('The server running at the port-->', port)
     connectDB()
