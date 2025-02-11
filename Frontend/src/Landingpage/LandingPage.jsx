@@ -19,9 +19,9 @@ function LandingPage() {
         <div className="land_bg h-screen w-full flex-col justify-center items-center">
           <nav className=" flex flex-row justify-around items-center">
             <img
-              src="./netflix-logo.png"
+              src="./streamit.bmp"
               alt=""
-              className=" relative right-[10%] w-[8rem] h-[3rem] top-6  "
+              className=" relative right-[10%] w-[12rem] h-[3rem] top-6  "
             />
             <button
               className=" relative top-6 left-[15%] bg-red text-white text-lg h-8 bg-red-600 hover:bg-red-700 w-20 rounded-xl"
@@ -87,7 +87,7 @@ function LandingPage() {
             </div>
             {/* right */}
             <div className=" relative  flex-1 flex justify-center bg-purple">
-              <img src="./tv.png" className=" w-[70%] " alt="" />
+              <img src="./659hczgp.bmp" className=" w-[70%] " alt="" />
               <video
                 src="./hero-vid.m4v"
                 className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2"
@@ -108,13 +108,13 @@ function LandingPage() {
 
             <div className=" relative  flex-1 flex justify-center ">
               <img
-                src="./stranger-things-lg.png"
+                src="./strangerthings.bmp"
                 className=" w-[70%] "
                 alt=""
               />
               <div className=" absolute bg-black w-[40%] h-[22%] top-[70%] rounded-lg ring-2 ring-slate-500 flex flex-row justify-evenly items-center gap-2">
                 <img
-                  src="./stranger-things-sm.png"
+                  src="./heuc5d7r.bmp"
                   alt=""
                   className=" w-[20%] h-[75%]"
                 />
@@ -123,7 +123,7 @@ function LandingPage() {
                   <h2 className=" text-blue-800">Downloading...</h2>
                 </div>
                 <img
-                  src=".\download-icon.gif"
+                  src="./download-icon.gif"
                   alt=""
                   className=" w-[15%] h-[50%] "
                 />
@@ -163,13 +163,14 @@ function LandingPage() {
             {/* right */}
             <div className=" relative flex-1 flex justify-center bg-purple">
               <img
-                src="./device-pile.png"
-                className=" w-[70%] relative z-20 "
+                src="./tv.bmp"
+                className=" w-[70%] relative z-20"
                 alt=""
               />
               <video
-                src="./video-devices.m4v"
-                className=" absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2"
+                src="./devices.m4v"
+                className="  absolute top-2 left-1/2 -translate-x-1/2  h-4/6 z-20
+               max-w-[%]"
                 playsInline
                 autoPlay={true}
                 muted
