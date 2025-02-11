@@ -170,7 +170,7 @@ function LandingPage() {
               <video
                 src="./devices.m4v"
                 className="  absolute top-2 left-1/2 -translate-x-1/2  h-4/6 z-20
-               max-w-[%]"
+               max-w-[45%]"
                 playsInline
                 autoPlay={true}
                 muted
