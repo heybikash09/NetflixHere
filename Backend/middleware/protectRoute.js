@@ -1,4 +1,3 @@
-import express from 'express'
 import jwt from 'jsonwebtoken'
 import { User } from '../models/user.model.js'
 import { ENV_VARS } from '../config/envVars.js'
@@ -6,7 +5,9 @@ import { ENV_VARS } from '../config/envVars.js'
 export const protectRoute = async (req, res, next) => {
 
     try {
+        console.log("done-->",req.cookies)
         const token = req.cookies['jwt-netflix']
+        console.log("token-->",token)
         if (!token)
             return res.status(401).json({ success: false, message: 'Unauthorised-No token provided !!!' })
 

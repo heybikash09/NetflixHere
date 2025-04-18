@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import LandingPage from "./Landingpage/LandingPage";
 import Signup from "./Authentication/Signup";
 import Login from "./Authentication/Login";
 import Home from "./HomePage/Home";
@@ -31,17 +30,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="signup"
-          element={!user ? <Signup/> : <Navigate to={"/signin"} />}
+          element={!user ? <Signup /> : <Navigate to={"/signin"} />}
         />
         <Route
           path="signin"
           element={!user ? <Login /> : <Navigate to={"/"} />}
         />
-        <Route
-          path="/watch"
-          element={<WatchPage />}
-        />
-        <Route path="/search"  element={<SearchPage/>}/>
+        <Route path="/watch" element={<WatchPage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
       <Toaster />
     </>
