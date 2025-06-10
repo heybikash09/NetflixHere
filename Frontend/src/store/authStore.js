@@ -46,7 +46,7 @@ export const useAuthStore = create((set) => ({
     authCheck: async () => {
         set({ isChekingAuth: true })
         try {
-            const response = await axios.get('https://netflixhere-1.onrender.com/api/v1/auth/authCheck')
+            const response = await axios.get('https://netflixhere.onrender.com/api/v1/auth/authCheck')
             set({ user: response.data.user, isChekingAuth: false })
         } catch (error) {
             console.log('error in authChek ',error.message)
