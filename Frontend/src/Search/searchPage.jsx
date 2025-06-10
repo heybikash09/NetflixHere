@@ -17,7 +17,7 @@ function SearchPage() {
     // Handle search logic here
     try {
         const res = await axios.get(
-          `api/v1/search/${contentType}/${searchQuery}`
+          `https://netflixhere.onrender.com/api/v1/search/${contentType}/${searchQuery}`
         );
         setSearchContent(res.data.content);
       // setSearchQuery("");
@@ -29,7 +29,7 @@ function SearchPage() {
     console.log("handleSearchHistory");
     try {
       if(ctgry==''){
-      const res = await axios.get(`api/v1/search/history`);
+      const res = await axios.get(`https://netflixhere.onrender.com/api/v1/search/history`);
       setSearchContent(res.data.content);}
     } catch (error) {
       console.log("error in search content fetch--->", error.message);

@@ -18,7 +18,7 @@ function SlideMovies() {
   useEffect(() => {
     const getTrendingContent = async () => {
       setLoading(true);
-      const res = await axios.get(`api/v1/${contentType}/trending`);
+      const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/trending`);
       console.log("res-->", res.data);
       setTrendingContent(res.data.content.results);
       setLoading(false);
