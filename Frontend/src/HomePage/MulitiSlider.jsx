@@ -19,7 +19,7 @@ function MulitiSlider({ type, content }) {
 
   useEffect(() => {
     const getCategoryContent = async () => {
-      const res = await axios.get(`https://netflixhere.onrender.com/v1/${contentType}/${type}`);
+      const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/${type}`);
       console.log(`${type}`, res.data.content);
       setCategoryContent(res.data.content.results);
       setLoading()
