@@ -9,7 +9,7 @@ import searchRouter from './routes/search.router.js'
 import cookieParser from 'cookie-parser'
 import { protectRoute } from './middleware/protectRoute.js'
 import path from 'path'
-// const __dirname=path.resolve()
+ const __dirname=path.resolve()
 
 const app = express()
 app.use(cors())
@@ -23,7 +23,10 @@ app.use(cookieParser())//for access cookie
 app.use(express.urlencoded({ extended: true })) //for urlencoded data 
 app.use(express.json())// allow us to parse req body 
 
-
+app.use(express.static(path.join(__dirname, '/Frontend/dist')))//for serving static files
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'Frontend','dist','index.html'))
+})
 const port = ENV_VARS.PORT
 
 app.use('/api/v1/auth',authRouter)
