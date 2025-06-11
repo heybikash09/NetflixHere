@@ -1,7 +1,6 @@
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { create } from 'zustand'
-
 export const useAuthStore = create((set) => ({
     user: null,
     isSignup: false,
@@ -11,7 +10,8 @@ export const useAuthStore = create((set) => ({
     signup: async (credential) => {
         set({ isSignup: true })
         try {
-            const response = await axios.post('https://netflixhere.onrender.com/api/v1/auth/signup', credential)
+            // const response = await axios.post('https://netflixhere.onrender.com/api/v1/auth/signup', credential)
+            const response = await axios.post('/api/v1/auth/signup', credential)
             set({ user: response.data.user, isSignup: false })
             console.log('authStore-->', response.data.message)
             toast.success(response.data.message)
@@ -23,7 +23,9 @@ export const useAuthStore = create((set) => ({
     login: async (credential) => {
         set({ isLogin: true })
         try {
-            const response = await axios.post('https://netflixhere.onrender.com/api/v1/auth/login', credential)
+            // const response = await axios.post('https://netflixhere.onrender.com/api/v1/auth/login', credential)
+          const response = await axios.post('/api/v1/auth/login', credential)
+
             set({ user: response.data.user, isLogin: false })
             console.log('authStore-->', response.data)
             toast.success(response.data.message)
@@ -35,7 +37,8 @@ export const useAuthStore = create((set) => ({
     logout: async () => {
         set({ isLoggingOut: true })
         try {
-            await axios.post('https://netflixhere.onrender.com/api/v1/auth/logout')
+            // await axios.post('https://netflixhere.onrender.com/api/v1/auth/logout')
+            await axios.post('/api/v1/auth/logout')
             set({ user: null, isLoggingOut: false })
             toast.success('Logout Successfully')
         } catch (error) {
@@ -46,7 +49,8 @@ export const useAuthStore = create((set) => ({
     authCheck: async () => {
         set({ isChekingAuth: true })
         try {
-            const response = await axios.get('https://netflixhere.onrender.com/api/v1/auth/authCheck')
+            // const response = await axios.get('https://netflixhere.onrender.com/api/v1/auth/authCheck')
+            const response = await axios.get('/api/v1/auth/authCheck')
             set({ user: response.data.user, isChekingAuth: false })
         } catch (error) {
             console.log('error in authChek ',error.message)

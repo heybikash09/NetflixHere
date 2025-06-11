@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SlideMovies from "./SlideMovies";
 import MulitiSlider from "./MulitiSlider";
 import Footer from "../Landingpage/Footer";
@@ -32,9 +32,15 @@ function Home() {
   if (!user) return <LandingPage />;
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-black to-blue-950">
+    <div className=" h-full w-full bg-gradient-to-br from-black to-blue-950">
       {/* Navbar */}
-      {isScrolled && <NavBar setIsOpen={() => setPanelOpen(true)} />}
+      <div
+        className={`fixed top-0 left-0 w-full z-30 transition-all duration-300 ${
+          isScrolled ? "bg-black opacity-90" : "bg-transparent"
+        }`}
+      >
+        {isScrolled && <NavBar setIsOpen={() => setPanelOpen(true)} />}
+      </div>
 
       {/* Profile Panel */}
       {isPanelOpen && (
@@ -47,19 +53,21 @@ function Home() {
       )}
 
       {/* Slide Section */}
-      <div className="w-full px-2 sm:px-4 md:px-8 mt-8 sm:mt-10 md:mt-12">
+      <div className=" h-[27rem] lg:h-full  sm:w-full px-2 sm:px-4 md:px-8 ">
         <SlideMovies />
       </div>
 
       {/* Category Sliders */}
-      <div className="flex flex-col gap-12 mt-8 sm:mt-10 md:mt-12 w-full px-2 sm:px-4 md:px-8">
+      <div className="flex flex-col gap-5 mt-8 sm:mt-10 md:mt-12 w-full px-2 sm:px-4 md:px-8">
         {categories.map((type, index) => (
-          <section key={type} className="flex flex-col gap-4">
-            <div className="flex justify-between items-center">
+          <section key={type} className="flex flex-col gap-4 ">
+            <div className="flex justify-between items-center ">
               <h2 className="text-xl sm:text-2xl text-white font-semibold">
                 {sectionTitles[index]}
               </h2>
-              <button className="text-red-600 text-sm sm:text-base">View All</button>
+              <button className="text-red-600 text-sm sm:text-base">
+                View All
+              </button>
             </div>
             <MulitiSlider type={type} />
           </section>

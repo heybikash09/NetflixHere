@@ -20,6 +20,7 @@ function MulitiSlider({ type, content }) {
   useEffect(() => {
     const getCategoryContent = async () => {
       const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/${type}`);
+      // const res = await axios.get(`api/v1/${contentType}/${type}`);
       console.log(`${type}`, res.data.content);
       setCategoryContent(res.data.content.results);
       setLoading()
@@ -34,7 +35,7 @@ function MulitiSlider({ type, content }) {
       else if(window.innerWidth > 1250) setLen(5)
       else if (window.innerWidth > 1024) setLen(4);
       else if (window.innerWidth > 600) setLen(3);
-      else setLen(2);
+      else setLen(3);
     };
     window.addEventListener("resize", handleSize);
     return () => window.removeEventListener("resize", handleSize);
@@ -42,7 +43,7 @@ function MulitiSlider({ type, content }) {
 
   return (
     <>
-    <div className="w-full h-full ">
+    <div className="w-full h-[15rem] sm:h-[20rem]  flex justify-center items-center">
       <Swiper
         loop={true} // Infinite Loop
         navigation={true} // Next/Prev Buttons
@@ -51,13 +52,13 @@ function MulitiSlider({ type, content }) {
         spaceBetween={25} // Spacing between slides
         watchOverflow={false} // Prevents navigation from disappearing
         modules={[Navigation, Pagination]}
-        className={`w-full h-full`}
+        className={`sm:w-full h-[12rem] sm:h-full mb-10 `}
       >
         {(content ? content : categoryContent).map((src, index) => (
           
           <SwiperSlide
             key={index}
-            className="  hover:relative hover:z-50 flex justify-evenly"
+            className=" hover:relative hover:z-50 flex justify-evenly mb-6"
           >
             <div className=" h-full w-full group rounded-2xl mt-12 transition ease-in-out duration-500  hover:scale-125  delay-200 ">
               <img

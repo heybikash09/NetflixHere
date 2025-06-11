@@ -62,6 +62,7 @@ function WatchPage() {
       try {
         console.log("Just started !!");
         const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/${id}/trailer`);
+        // const res = await axios.get(`hapi/v1/${contentType}/${id}/trailer`);
         if (contentType == "movie") setTrailer(res.data.content);
         else setTrailer(res.data.content.results);
         console.log(contentType, "-->trailer-->", res.data.content);
@@ -78,6 +79,7 @@ function WatchPage() {
     const getSimilarContent = async () => {
       try {
         const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/${id}/similar`);
+        // const res = await axios.get(`api/v1/${contentType}/${id}/similar`);
         setSimilarContent(res.data.content.results);
         console.log("similar-->", res.data.content.results);
       } catch (error) {
@@ -92,6 +94,7 @@ function WatchPage() {
     const getContentDetails = async () => {
       try {
         const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/${id}/details`);
+        // const res = await axios.get(`api/v1/${contentType}/${id}/details`);
         setContentDetails(res.data.content);
         console.log("contentDetails-->", res.data.content);
       } catch (error) {

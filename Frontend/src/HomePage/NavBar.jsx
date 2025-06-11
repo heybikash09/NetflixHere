@@ -14,7 +14,7 @@ function NavBar({setIsOpen}) {
           className=" w-[8rem] md:w-[10rem] md:h-[3] h-[2rem] lg:ml-28"
           alt=""
         />
-        <div className=" justify-evenly lg:flex hidden gap-16 list-none items-center text-white text-xl ml-80 lg:ml-44">
+        <div className=" justify-evenly lg:flex hidden gap-16 list-none items-center text-white text-xl ml-80 lg:ml-54">
           <li>Home</li>
           <li
             onClick={() => {
@@ -48,12 +48,6 @@ function NavBar({setIsOpen}) {
               <div className=" flex justify-start gap-6 items-center">
                 <UserRoundPen className=" ring-2 ring-blue-600 rounded-full w-7 h-7 p-2 box-content text-red-600 hidden sm:flex ml-4 mt-4" />
                 <p className=" mt-4 text-xl font-bold">Name</p>
-              </div>
-              <div>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
               </div>
             </div>
           </button>

@@ -48,7 +48,7 @@ function SearchPage() {
   ];
   return (
     <>
-      <div className="min-h-screen bg-black text-white bg-gradient-to-br from-black to-blue-950">
+      <div className="h-screen bg-black text-white bg-gradient-to-br from-black to-blue-950">
         {/* Header */}
         <header className="bg-gradient-to-b from-black/80 to-transparent p-4">
           <div className="max-w-5xl mx-auto">
