@@ -13,7 +13,6 @@ import { protectRoute } from './middleware/protectRoute.js'
 
 const app = express()
 app.use(cors({
-    // origin: 'http://localhost:5173', // Allow requests from this origin
     origin: 'https://netflixhere-1.onrender.com',
     credentials: true, // Allow frontend URL
     methods: 'GET,POST,PUT,DELETE',
@@ -23,11 +22,6 @@ app.use(cors({
 app.use(cookieParser())//for access cookie 
 app.use(express.urlencoded({ extended: true })) //for urlencoded data 
 app.use(express.json())// allow us to parse req body 
-
-// app.use(express.static(path.join(__dirname, '/Frontend/dist')))//for serving static files
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'Frontend','dist','index.html'))
-// })
 const port = ENV_VARS.PORT
 
 app.use('/api/v1/auth',authRouter)

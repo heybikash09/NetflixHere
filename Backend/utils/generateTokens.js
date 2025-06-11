@@ -7,8 +7,7 @@ export const generateDefaultToken=(userId,res)=>{
         maxAge:15*24*60*60*1000, //Time in mili second 
         httpOnly:true, //prevent xss attacks cross-site scripting attacks , make it not be accessed by Js
         sameSite:"None", // csrf attacks cross-site request forgery attacks 
-        secure:true,
-        domain: ".onrender.com" 
+        secure:"true"
     })
 
     return token;
