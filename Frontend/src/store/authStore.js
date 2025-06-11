@@ -10,8 +10,8 @@ export const useAuthStore = create((set) => ({
     signup: async (credential) => {
         set({ isSignup: true })
         try {
-            // const response = await axios.post('https://netflixhere.onrender.com/api/v1/auth/signup', credential)
-            const response = await axios.post('/api/v1/auth/signup', credential)
+            const response = await axios.post('https://netflixhere.onrender.com/api/v1/auth/signup', credential)
+            // const response = await axios.post('/api/v1/auth/signup', credential)
             set({ user: response.data.user, isSignup: false })
             console.log('authStore-->', response.data.message)
             toast.success(response.data.message)
@@ -23,8 +23,8 @@ export const useAuthStore = create((set) => ({
     login: async (credential) => {
         set({ isLogin: true })
         try {
-            // const response = await axios.post('https://netflixhere.onrender.com/api/v1/auth/login', credential)
-          const response = await axios.post('/api/v1/auth/login', credential)
+            const response = await axios.post('https://netflixhere.onrender.com/api/v1/auth/login', credential)
+        //   const response = await axios.post('/api/v1/auth/login', credential)
 
             set({ user: response.data.user, isLogin: false })
             console.log('authStore-->', response.data)
@@ -37,8 +37,8 @@ export const useAuthStore = create((set) => ({
     logout: async () => {
         set({ isLoggingOut: true })
         try {
-            // await axios.post('https://netflixhere.onrender.com/api/v1/auth/logout')
-            await axios.post('/api/v1/auth/logout')
+            await axios.post('https://netflixhere.onrender.com/api/v1/auth/logout')
+            // await axios.post('/api/v1/auth/logout')
             set({ user: null, isLoggingOut: false })
             toast.success('Logout Successfully')
         } catch (error) {
