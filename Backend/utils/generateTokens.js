@@ -1,14 +1,22 @@
 import jwt from "jsonwebtoken"
 import { ENV_VARS } from "../config/envVars.js"
 
-export const generateDefaultToken=(userId,res)=>{
-    const token=jwt.sign({userId},ENV_VARS.JWT_SECRET,{expiresIn:"15d"})
-    res.cookie("jwt-netflix",token,{
-        maxAge:15*24*60*60*1000, //Time in mili second 
-        httpOnly:true, //prevent xss attacks cross-site scripting attacks , make it not be accessed by Js
-        sameSite:"None", // csrf attacks cross-site request forgery attacks 
-        secure:"true"
-    })
-
-    return token;
+export const generateDefaultToken = (userId, res) => {
+    try {
+        const token = jwt.sign({ userId }, ENV_VARS.JWT_SECRET, { expiresIn: "15d" });
+        if (res && typeof res.cookie === "function") {
+            res.cookie("jwt-netflix", token, {
+                maxAge: 15 * 24 * 60 * 60 * 1000, // Time in milliseconds
+                httpOnly: true, // Prevent XSS attacks
+                sameSite: "None", // CSRF protection
+                secure: true
+            });
+        } else {
+            throw new Error("Response object is invalid or missing.");
+        }
+        return token;
+    } catch (error) {
+        console.error("Error generating token:", error);
+        throw error;
+    }
 }
