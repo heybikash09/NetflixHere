@@ -6,8 +6,8 @@ export const generateDefaultToken=(userId,res)=>{
     res.cookie("jwt-netflix",token,{
         maxAge:15*24*60*60*1000, //Time in mili second 
         httpOnly:true, //prevent xss attacks cross-site scripting attacks , make it not be accessed by Js
-        sameSite:ENV_VARS.NODE_ENV === "production" ? "None" : "Lax", // allow cross-site cookies
-        secure:ENV_VARS.NODE_ENV!=="development"
+        sameSite:"None", // allow cross-site cookies
+        secure:"true"
     })
 
     return token;
