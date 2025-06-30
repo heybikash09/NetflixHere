@@ -6,7 +6,7 @@ import { useAuthStore } from "../store/authStore";
 import { useContentStore } from "../store/content";
 import { MOVIE_CATEGORY, TV_CATEGORY } from "../utils/constants";
 import LandingPage from "../Landingpage/LandingPage";
-import NavBar from "./NavBar";
+// import NavBar from "./NavBar";
 import ProfileDetails from "./ProfileSidePlanel";
 import HorizontalNavBar from "./HorizontalNavBar";
 

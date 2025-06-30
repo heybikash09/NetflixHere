@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 function HorizontalNavBar({ isOpen, onClose, setIsOpen }) {
   const { setContentType } = useContentStore();
-  const { logout, user } = useAuthStore();
+  const {  user } = useAuthStore();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   return (
