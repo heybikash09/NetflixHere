@@ -5,7 +5,6 @@ import { ENV_VARS } from '../config/envVars.js'
 export const protectRoute = async (req, res, next) => {
 
     try {
-        console.log("done-->",req.cookies)
         const token = req.cookies['jwt-netflix']
         console.log("token-->",token)
         if (!token)
@@ -18,7 +17,6 @@ export const protectRoute = async (req, res, next) => {
 
         if(!user)
             return res.status(401).json({ success: false, message: 'User Not Found !!' })
-
         req.user=user
         next()
 

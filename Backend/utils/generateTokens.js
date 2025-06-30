@@ -9,6 +9,5 @@ export const generateDefaultToken = (userId, res) => {
         sameSite: "None", // csrf attacks cross-site request forgery attacks 
         secure: true
     })
-
     return token;
 }

@@ -10,6 +10,7 @@ import { useContentStore } from "../store/content";
 import { useAuthStore } from "../store/authStore";
 import NavBar from "./NavBar";
 import PulseBiping from "./PulseBiping";
+import { ENV_VARS } from "../envVar";
 
 const name = ["Movies Recomended For You", "Related Movies", "Upcoming"];
 function WatchPage() {
@@ -61,7 +62,7 @@ function WatchPage() {
     const getTrailer = async () => {
       try {
         console.log("Just started !!");
-        const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/${id}/trailer`);
+        const res = await axios.get(`${ENV_VARS.BACKEND_URL}/api/v1/${contentType}/${id}/trailer`);
         // const res = await axios.get(`hapi/v1/${contentType}/${id}/trailer`);
         if (contentType == "movie") setTrailer(res.data.content);
         else setTrailer(res.data.content.results);
@@ -78,7 +79,7 @@ function WatchPage() {
   useEffect(() => {
     const getSimilarContent = async () => {
       try {
-        const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/${id}/similar`);
+        const res = await axios.get(`${ENV_VARS.BACKEND_URL}/api/v1/${contentType}/${id}/similar`);
         // const res = await axios.get(`api/v1/${contentType}/${id}/similar`);
         setSimilarContent(res.data.content.results);
         console.log("similar-->", res.data.content.results);
@@ -93,7 +94,7 @@ function WatchPage() {
   useEffect(() => {
     const getContentDetails = async () => {
       try {
-        const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/${id}/details`);
+        const res = await axios.get(`${ENV_VARS.BACKEND_URL}/api/v1/${contentType}/${id}/details`);
         // const res = await axios.get(`api/v1/${contentType}/${id}/details`);
         setContentDetails(res.data.content);
         console.log("contentDetails-->", res.data.content);

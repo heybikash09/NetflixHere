@@ -3,7 +3,9 @@ import { ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { useState } from "react";
+import { ENV_VARS } from "../envVar";
 function LandingPage() {
+    console.log("App is running-->",ENV_VARS.BACKEND_URL);
   const [email, setEmail] =useState("");
   const navigate = useNavigate();
   const handleSubmitForm = (e) => {

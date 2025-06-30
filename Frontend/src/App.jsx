@@ -8,7 +8,9 @@ import { useEffect } from "react";
 import { Loader } from "lucide-react";
 import WatchPage from "./HomePage/WatchPage";
 import SearchPage from "./Search/searchPage";
+
 function App() {
+
   const { user, isChekingAuth, authCheck } = useAuthStore();
   console.log("authenticated user -->", user);
   useEffect(() => {

@@ -9,6 +9,10 @@
     padding: 0;
     overflow-x: hidden;
 }
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
 .slick-next {
     background-color: red; /* Change background color */
   

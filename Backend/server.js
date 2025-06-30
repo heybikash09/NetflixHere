@@ -13,7 +13,7 @@ import { protectRoute } from './middleware/protectRoute.js'
 
 const app = express()
 app.use(cors({
-    origin: 'https://netflixhere-1.onrender.com',
+    origin: ['http://localhost:5173', 'https://netflixhere-1.onrender.com'],
     credentials: true, // Allow frontend URL
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization'

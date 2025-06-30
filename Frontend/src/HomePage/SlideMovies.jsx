@@ -10,6 +10,7 @@ import { useContentStore } from "../store/content";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import PulseMainVideo from "./PulseBiping";
+import { ENV_VARS } from "../envVar";
 
 function SlideMovies() {
   const [loading, setLoading] = useState(true);
@@ -18,8 +19,7 @@ function SlideMovies() {
   useEffect(() => {
     const getTrendingContent = async () => {
       setLoading(true);
-      const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/trending`);
-      // const res = await axios.get(`/api/v1/${contentType}/trending`);
+      const res = await axios.get(`${ENV_VARS.BACKEND_URL}/api/v1/${contentType}/trending`);
       console.log("res-->", res.data);
       setTrendingContent(res.data.content.results);
       setLoading(false);
@@ -36,7 +36,7 @@ function SlideMovies() {
         <div className="w-[95%] mx-auto h-screen px-4 p-10  ">
           <Swiper
             loop={true} // Infinite Loop
-            navigation={true} // Next/Prev Buttons
+            // navigation={true} // Next/Prev Buttons
             pagination={{ clickable: true }} // Pagination Dots
             slidesPerView={1} // Show 6 slides at a time
             spaceBetween={10} // Spacing between slides
@@ -62,7 +62,7 @@ function SlideMovies() {
                         {<Eye className=" mt-1" />}-{src.vote_count}
                       </li>
                     </div>
-                    <div className="flex w-[20%] md:w-[20%] lg:w-[18%] text-xl text-slate-300  font-semibold  justify-start gap-2">
+                    <div className="w-[20%] hidden md:flex md:w-[20%] lg:w-[18%] text-xl text-slate-300  font-semibold  justify-start gap-2">
                       <li>
                         {contentType == "movie"
                           ? src.release_date
@@ -73,10 +73,10 @@ function SlideMovies() {
                     <p className=" w-[65%] hidden lg:flex lg:font-bold ">
                       {src.overview}
                     </p>
-                    <button className=" h-12 text-base rounded-lg w-[30%] md:w-[20%] lg:w-[10rem] bg-red-600 flex justify-center items-center text-white font-bold hover:bg-red-700">
-                      <h2>play Now</h2>
+                    <button className=" h-8 md:h-12 text-base rounded-lg w-[18%] md:w-[20%] lg:w-[10rem] bg-red-600 flex justify-center items-center text-white font-bold hover:bg-red-700">
+                      <h2 className=" hidden md:block" >play Now</h2>
                       <Link to={`/watch?id=${src.id}`}>
-                        <Play className="ml-3 hidden md:flex" />
+                        <Play className="ml-3 " />
                       </Link>
                     </button>
                   </div>

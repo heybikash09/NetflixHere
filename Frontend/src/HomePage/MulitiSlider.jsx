@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom'
 import { useContentStore } from "../store/content";
 import { ORIGINAL_IMG_BASE_URL } from "../utils/constants";
 import axios from "axios";
+import { ENV_VARS } from "../envVar";
 
 function MulitiSlider({ type, content }) {
   if (content) console.log("content here -->", content);
@@ -19,7 +20,7 @@ function MulitiSlider({ type, content }) {
 
   useEffect(() => {
     const getCategoryContent = async () => {
-      const res = await axios.get(`https://netflixhere.onrender.com/api/v1/${contentType}/${type}`);
+      const res = await axios.get(`${ENV_VARS.BACKEND_URL}/api/v1/${contentType}/${type}`);
       // const res = await axios.get(`api/v1/${contentType}/${type}`);
       console.log(`${type}`, res.data.content);
       setCategoryContent(res.data.content.results);
@@ -46,7 +47,7 @@ function MulitiSlider({ type, content }) {
     <div className="w-full h-[15rem] sm:h-[20rem]  flex justify-center items-center">
       <Swiper
         loop={true} // Infinite Loop
-        navigation={true} // Next/Prev Buttons
+        // navigation={true} // Next/Prev Buttons
         // pagination={{ clickable: true }} // Pagination Dots
         slidesPerView={len} // Show 6 slides at a time
         spaceBetween={25} // Spacing between slides

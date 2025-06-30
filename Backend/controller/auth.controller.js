@@ -84,10 +84,10 @@ export async function logout(req, res) {
 
 export const authCheck=async (req,res)=>{
     try {
+         console.log('authCheck controller called --->',req.user)
         res.status(200).json({status:true,user:req.user})
     } catch (error) {
         console.log('error in authcheck controller  --->',error.message)
         return res.status(500).json({success:false,message:'Internal Server error !!'})
     }
-
 }

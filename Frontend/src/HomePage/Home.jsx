@@ -8,11 +8,14 @@ import { MOVIE_CATEGORY, TV_CATEGORY } from "../utils/constants";
 import LandingPage from "../Landingpage/LandingPage";
 import NavBar from "./NavBar";
 import ProfileDetails from "./ProfileSidePlanel";
+import HorizontalNavBar from "./HorizontalNavBar";
 
 function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPanelOpen, setPanelOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [horizontalNavOpen, setHorizontalNavOpen] = useState(false);
+  console.log('prof-->',isPanelOpen)
 
   const { user } = useAuthStore();
   const { contentType } = useContentStore();
@@ -24,7 +27,9 @@ function Home() {
       : ["Airing Today", "Popular", "Top Rated", "On The Air"];
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 0);
+    const handleScroll = () => {setIsScrolled(window.scrollY > 0)
+      setHorizontalNavOpen(window.scrollY > 0)
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -33,14 +38,25 @@ function Home() {
 
   return (
     <div className=" h-full w-full bg-gradient-to-br from-black to-blue-950">
-      {/* Navbar */}
       <div
         className={`fixed top-0 left-0 w-full z-30 transition-all duration-300 ${
           isScrolled ? "bg-black opacity-90" : "bg-transparent"
         }`}
       >
-        {isScrolled && <NavBar setIsOpen={() => setPanelOpen(true)} />}
+        {/* {isScrolled && (
+          <NavBar
+            setIsOpen={() => setPanelOpen(true)}
+            setNavOpen={() => setHorizontalNavOpen(true)}
+          />
+        )} */}
       </div>
+      {horizontalNavOpen && (
+        <HorizontalNavBar
+           isOpen={horizontalNavOpen}
+           setIsOpen={() => setPanelOpen(true)}
+          onClose={() => setHorizontalNavOpen(false)}
+        />
+      )}
 
       {/* Profile Panel */}
       {isPanelOpen && (

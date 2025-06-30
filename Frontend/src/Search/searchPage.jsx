@@ -4,7 +4,7 @@ import axios from "axios";
 import { ORIGINAL_IMG_BASE_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import { useContentStore } from "../store/content";
-
+import { ENV_VARS } from "../envVar";
 function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
   // const [activeCategory, setActiveCategory] = useState("movie");
@@ -17,7 +17,7 @@ function SearchPage() {
     // Handle search logic here
     try {
         const res = await axios.get(
-          `https://netflixhere.onrender.com/api/v1/search/${contentType}/${searchQuery}`
+          `${ENV_VARS.BACKEND_URL}/api/v1/search/${contentType}/${searchQuery}`
         );
         setSearchContent(res.data.content);
       // setSearchQuery("");
@@ -29,7 +29,7 @@ function SearchPage() {
     console.log("handleSearchHistory");
     try {
       if(ctgry==''){
-      const res = await axios.get(`https://netflixhere.onrender.com/api/v1/search/history`);
+      const res = await axios.get(`${ENV_VARS.BACKEND_URL}/api/v1/search/history`);
       setSearchContent(res.data.content);}
     } catch (error) {
       console.log("error in search content fetch--->", error.message);
@@ -48,7 +48,7 @@ function SearchPage() {
   ];
   return (
     <>
-      <div className="h-screen bg-black text-white bg-gradient-to-br from-black to-blue-950">
+      <div className="min-h-screen bg-black text-white bg-gradient-to-br from-black to-blue-950">
         {/* Header */}
         <header className="bg-gradient-to-b from-black/80 to-transparent p-4">
           <div className="max-w-5xl mx-auto">
@@ -72,7 +72,7 @@ function SearchPage() {
             </form>
 
             {/* Category Tabs */}
-            <div className="flex space-x-1 mt-6">
+            <div className="flex space-x-1 mt-6 overflow-y-scroll">
               {categories.map((category) => (
                 <button
                   key={category.id}
