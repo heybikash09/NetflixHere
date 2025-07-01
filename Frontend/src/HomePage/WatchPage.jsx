@@ -80,7 +80,6 @@ function WatchPage() {
     const getSimilarContent = async () => {
       try {
         const res = await axios.get(`${ENV_VARS.BACKEND_URL}/api/v1/${contentType}/${id}/similar`);
-        // const res = await axios.get(`api/v1/${contentType}/${id}/similar`);
         setSimilarContent(res.data.content.results);
         console.log("similar-->", res.data.content.results);
       } catch (error) {
