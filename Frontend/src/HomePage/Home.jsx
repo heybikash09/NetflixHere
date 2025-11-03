@@ -9,6 +9,7 @@ import LandingPage from "../Landingpage/LandingPage";
 // import NavBar from "./NavBar";
 import ProfileDetails from "./ProfileSidePlanel";
 import HorizontalNavBar from "./HorizontalNavBar";
+import NavBar from "./NavBar";
 
 function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,18 +39,6 @@ function Home() {
 
   return (
     <div className=" h-full w-full bg-gradient-to-br from-black to-blue-950">
-      <div
-        className={`fixed top-0 left-0 w-full z-30 transition-all duration-300 ${
-          isScrolled ? "bg-black opacity-90" : "bg-transparent"
-        }`}
-      >
-        {/* {isScrolled && (
-          <NavBar
-            setIsOpen={() => setPanelOpen(true)}
-            setNavOpen={() => setHorizontalNavOpen(true)}
-          />
-        )} */}
-      </div>
       {horizontalNavOpen && (
         <HorizontalNavBar
            isOpen={horizontalNavOpen}

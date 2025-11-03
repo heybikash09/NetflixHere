@@ -2,33 +2,30 @@ import { User } from "../models/user.model.js"
 import bcryptjs from "bcryptjs"
 import { generateDefaultToken } from "../utils/generateTokens.js"
 export const signup = async (req, res) =>{
+        console.log("<- hunnnnn ->")
     try {
+    
         const { username, password, email } = req.body
         if (!email || !username || !password)
             return res.status(402).json({ status:false,message: 'All field has to be filled !!' })
-
         if (await User.findOne({ username: username }))
         {
             return res.status(400).json({ status: false, message: 'username already exist !!!' })
         }
-
         const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
         if (!emailReg.test(email))
             return res.status(400).json({ status: false, message: 'email is not valid' })
-
         if (await User.findOne({ email: email }))
         {
-            return res.status(400).json({ status: false, message: 'email address already exist !!!' })
+            return res.status(400).json({ status: false, message: 'email address already      exist !!!'})
         }
-
         if (!(password.length > 6))
             return res.status(400).json({ status: false, message: 'password has less than 6 character !!' })
-
         //Its is for store the password in  hashed way in Database
+        console.log("all ready signup start")
         const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcryptjs.hash(password, salt)
-
         const newUser = new User(
             {
                 username,
@@ -43,8 +40,8 @@ export const signup = async (req, res) =>{
         await newUser.save()
         return res.status(201).json({ status:true,message:'Signup Successfully', user: { ...newUser._doc, password: "" } })
 
-    } catch (err) {
-        console.log('error encounter -->',err.errmsg)
+    } catch (error) {
+        console.log('error encounter -->',error)
         return res.status(500).json({ status: false, message:'Internal Server error !!' })
     }
 

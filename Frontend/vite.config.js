@@ -7,7 +7,8 @@ export default defineConfig({
   server:{
     proxy:{
      '/api/v1': {
-        target: 'http://localhost:2000', // Replace with your backend server
+        // target: 'http://localhost:2000', // Backend url for local server
+        target: 'https://netflixhere.onrender.com', //Backend url for Deployed server
         changeOrigin: true,
       },
     }

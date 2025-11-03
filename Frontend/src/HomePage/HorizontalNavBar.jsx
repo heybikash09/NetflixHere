@@ -1,119 +1,140 @@
 import { AlignJustify, Search, UserRoundPen, X } from "lucide-react";
 import React, { useState } from "react";
 import { useContentStore } from "../store/content";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
+
 function HorizontalNavBar({ isOpen, onClose, setIsOpen }) {
   const { setContentType } = useContentStore();
-  const {  user } = useAuthStore();
+  const { user } = useAuthStore();
   const navigate = useNavigate();
+  const location = useLocation(); // ✅ Get current path
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Navigate to Home only if not already there
+  const goToHome = () => {
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
+    setMenuOpen(false);
+  };
+
+  const goToMovies = () => {
+    setContentType("movie");
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
+    setMenuOpen(false);
+  };
+
+  const goToTvShows = () => {
+    setContentType("tv");
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
+    setMenuOpen(false);
+  };
+
   return (
     <>
-      <div className="w-full bg-black opacity-90 h-20 flex justify-between items-center fixed z-30 px-4 sm:px-8 lg:px-28">
-        {/* Logo */}
-        <img
-          src="./streamit.bmp"
-          className="w-[8rem] md:w-[10rem] h-[2rem] md:h-[3rem]"
-          alt="StreamIt Logo"
-        />
+      {/* Top Navigation Bar */}
+      <div className="w-full bg-black/90 backdrop-blur-sm h-20 flex justify-between items-center fixed top-0 z-30 px-4 sm:px-8 lg:px-28 border-b border-gray-800">
+        <Link to="/" className="focus:outline-none">
+          <img
+            src="./streamit.bmp"
+            className="w-[8rem] md:w-[10rem] h-[2rem] md:h-[3rem] object-contain"
+            alt="StreamIt Logo"
+          />
+        </Link>
 
-        {/* Navigation Links (Large Screens) */}
-        <ul className="hidden lg:flex gap-28 text-white text-lg items-center">
-          <li className="cursor-pointer hover:text-red-600">Home</li>
+        <ul className="hidden lg:flex gap-10 text-white text-lg font-medium">
           <li
-            className="cursor-pointer hover:text-red-600"
-            onClick={() => {
-              setContentType("movie");
-              navigate("/");
-            }}
+            onClick={goToHome}
+            className="cursor-pointer hover:text-red-500 transition-colors duration-200"
+          >
+            Home
+          </li>
+          <li
+            onClick={goToMovies}
+            className="cursor-pointer hover:text-red-500 transition-colors duration-200"
           >
             Movies
           </li>
           <li
-            className="cursor-pointer hover:text-red-600"
-            onClick={() => {
-              setContentType("tv");
-              navigate("/");
-            }}
+            onClick={goToTvShows}
+            className="cursor-pointer hover:text-red-500 transition-colors duration-200"
           >
             TV Shows
           </li>
-          <li className="cursor-pointer hover:text-red-600">Sports</li>
         </ul>
 
-        {/* Right-side Icons */}
-        <div className="flex items-center gap-4 sm:gap-7">
-          <Link to="/search">
-            <Search className="text-red-600 cursor-pointer hover:text-red-600" />
+        <div className="flex items-center gap-4 sm:gap-6">
+          <Link to="/search" className="text-white hover:text-red-500 transition-colors">
+            <Search className="w-6 h-6" />
           </Link>
 
-          {/* Profile Icon on md+ */}
-          <UserRoundPen
+          <button
             onClick={setIsOpen}
-            className="ring-2 rounded-full w-9 h-9 p-2 text-red-600 hidden lg:flex cursor-pointer"
-          />
+            aria-label="Open profile"
+            className="hidden lg:block text-white hover:text-red-500 transition-colors"
+          >
+            <UserRoundPen className="w-9 h-9 p-2 rounded-full border border-gray-700 hover:border-red-500" />
+          </button>
 
-          {/* Hamburger Icon on mobile */}
-          <AlignJustify
+          <button
             onClick={() => setMenuOpen(true)}
-            className="w-9 h-9 p-1 text-red-600 lg:hidden cursor-pointer"
-          />
+            aria-label="Open mobile menu"
+            className="lg:hidden text-white p-2 rounded-md hover:bg-gray-800"
+          >
+            <AlignJustify className="w-6 h-6" />
+          </button>
         </div>
       </div>
 
-      {/* Slide-in Mobile Drawer */}
+      {/* Mobile Drawer */}
       {menuOpen && (
-        <div className="fixed top-0 right-0 w-64 h-full bg-gradient-to-br from-black to-blue-950 z-40 shadow-lg transition-all duration-300">
-          <div className="flex justify-between items-center p-4 text-white">
-            <p className="text-xl font-semibold">Menu</p>
-            <X
-              className="cursor-pointer text-red-600"
-              onClick={() => setMenuOpen(false)}
-            />
+        <div className="fixed inset-0 top-0 right-0 w-64 h-full bg-gradient-to-b from-gray-900 to-black z-40 shadow-2xl transform transition-transform duration-300">
+          <div className="flex justify-between items-center p-5 border-b border-gray-800">
+            <span className="text-white text-xl font-bold">Menu</span>
+            <button onClick={() => setMenuOpen(false)} aria-label="Close menu">
+              <X className="text-red-500 w-6 h-6" />
+            </button>
           </div>
-          <div className="flex flex-col text-white gap-4 px-6 pt-4 text-lg">
-            <p className="cursor-pointer hover:text-red-600" onClick={() => setMenuOpen(false)}>
+
+          <div className="flex flex-col text-white mt-6 px-5 space-y-5">
+            <button
+              onClick={goToHome}
+              className="text-left text-lg font-medium hover:text-red-500 transition-colors py-2"
+            >
               Home
-            </p>
-            <p
-              className="cursor-pointer hover:text-red-600"
-              onClick={() => {
-                setContentType("movie");
-                navigate("/");
-                setMenuOpen(false);
-              }}
+            </button>
+            <button
+              onClick={goToMovies}
+              className="text-left text-lg font-medium hover:text-red-500 transition-colors py-2"
             >
               Movies
-            </p>
-            <p
-              className="cursor-pointer hover:text-red-600"
-              onClick={() => {
-                setContentType("tv");
-                navigate("/");
-                setMenuOpen(false);
-              }}
+            </button>
+            <button
+              onClick={goToTvShows}
+              className="text-left text-lg font-medium hover:text-red-500 transition-colors py-2"
             >
               TV Shows
-            </p>
-            <p className="cursor-pointer hover:text-red-600" onClick={() => setMenuOpen(false)}>
-              Sports
-            </p>
-            <hr className="my-2 border-gray-600" />
-            <div className="text-center h-28">
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
+            </button>
+          </div>
+
+          {user && (
+            <div className="absolute bottom-6 left-0 right-0 px-5 text-center">
+              <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-gray-700">
                 <img
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  src={user.image || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&w=128&h=128&q=80"}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-xl font-semibold dark:text-white">
-                {user.username}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">{user.email}</p>
+              <h3 className="text-white font-semibold truncate">{user.username}</h3>
+              <p className="text-gray-400 text-sm truncate">{user.email}</p>
             </div>
-          </div>
+          )}
         </div>
       )}
     </>

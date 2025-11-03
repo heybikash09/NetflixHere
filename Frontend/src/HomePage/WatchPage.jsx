@@ -55,7 +55,7 @@ function WatchPage() {
       console.log("id-->", id);
     };
     getID();
-  }, [contentType, location, id]);
+  }, [contentType, location]);
 
   // For trailer
   useEffect(() => {
@@ -78,6 +78,7 @@ function WatchPage() {
   // for similar content
   useEffect(() => {
     const getSimilarContent = async () => {
+      console.log("Id---->",id)
       try {
         const res = await axios.get(`${ENV_VARS.BACKEND_URL}/api/v1/${contentType}/${id}/similar`);
         setSimilarContent(res.data.content.results);
@@ -110,7 +111,7 @@ function WatchPage() {
 
   return (
     <>
-      {nav && <NavBar />}
+      {/* {nav && <NavBar />} */}
 
       <div className="h-[100%] w-full mx-auto p-6 space-y-12 bg-slate-900 text-white">
         {/* Movie Player Section */}

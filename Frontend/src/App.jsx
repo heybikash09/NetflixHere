@@ -12,10 +12,12 @@ import SearchPage from "./Search/searchPage";
 function App() {
 
   const { user, isChekingAuth, authCheck } = useAuthStore();
-  console.log("authenticated user -->", user);
+  console.log("authenticated user Before Check -->", user);
   useEffect(() => {
     authCheck();
-  }, [authCheck]);
+  }, []);
+    console.log("authenticated user after Check -->", user);
+
   if (isChekingAuth) {
     console.log("Heyyyy !!");
     return (
@@ -31,11 +33,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
-          path="signup"
-          element={!user ? <Signup /> : <Navigate to={"/signin"} />}
+          path="/signup"
+          element={!user ? <Signup /> : <Navigate to={"/"} />}
         />
         <Route
-          path="signin"
+          path="/signin"
           element={!user ? <Login /> : <Navigate to={"/"} />}
         />
         <Route path="/watch" element={<WatchPage />} />

@@ -12,7 +12,10 @@ export const useAuthStore = create((set) => ({
     signup: async (credential) => {
         set({ isSignup: true })
         try {
+            console.log("Signup start in store Js")
+            console.log("url-->",ENV_VARS.BACKEND_URL)
             const response = await axios.post(`${ENV_VARS.BACKEND_URL}/api/v1/auth/signup`, credential)
+            console.log("data after signup--->",response.data)
             // const response = await axios.post('/api/v1/auth/signup', credential)
             set({ user: response.data.user, isSignup: false })
             console.log('authStore-->', response.data.message)
